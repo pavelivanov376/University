@@ -113,27 +113,40 @@ void takeATest(struct Question test[4])
 	printf("\n  Your grade is: %d\n",grade);
 
 }
-void crateTest(int numberOfTests,struct Question* tests[3][2])
+void createTest(int numberOfTests,struct Question* tests)
 {
-	printf("Enter question N:%d:\n", numberOfTests);
-	char question[40];
-	gets_s(question,40);
+	int currQuestion = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		currQuestion++;
+		printf("Enter question N:%d:\n", currQuestion);
+		char question[40];
+		gets_s(question,40);
+		strcpy((tests+numberOfTests)[0].text, question);   
+		
+		printf("Enter the first answer:\nA) ");
+		char answerA[20];
+		gets_s(answerA,20);
+		strcpy((tests + numberOfTests)[0].answerA, answerA);
+		
+		printf("Enter the second answer:\nB) ");
+		char answerB[20];
+		gets_s(answerB, 20);
+		strcpy((tests + numberOfTests)[0].answerB, answerB);
 
-	printf("%s", question);
+		printf("Enter the third answer:\nC) ");
+		char answerC[20];
+		gets_s(answerC, 20);
+		strcpy((tests + numberOfTests)[0].answerC, answerC);
 
-	strcpy(*tests[numberOfTests][0]->text, question);    //Problem
-	//printf("%s", *tests[numberOfTests][0]->text);
+		printf("Enter the fourth answer:\nD) ");
+		char answerD[20];
+		gets_s(answerD, 20);
+		strcpy((tests + numberOfTests)[0].answerD, answerD);
 
-
-
-	
-	//printf("Enter the the first answer:\nA) ");
-	//char answerA[20];
-	//gets_s(answerA,20);
-	//strcpy(tests[numberOfTests][0]->text, answerA);
-	//
-	//printf("%s", tests[numberOfTests + 1][0]->text);
-	//printf("%s", answerA);
+		printf("Enter the index of the right answer: 1 for A) and so on..\n");
+		scanf("%d",&(tests + numberOfTests)[0].answerRight);
+	}
 }
 
 void menu()
