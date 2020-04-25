@@ -243,7 +243,7 @@ void chooseInMenu(struct Question* tests, int* numberOfTests, int* exit)
 	}
 }
 
-void menu(struct Question* tests, int* numberOfTests)   //TODO: Visualise the menu and the creation of tests
+void menu(struct Question* tests, int* numberOfTests)   // Visualise the menu and the creation of tests
 {
 	int exit = 1;
 	while (exit)
