@@ -40,7 +40,7 @@ void printQuestion(struct Question* question, int currAnswer, int currQuestion)
 	system("cls");
 	printf("--------------------------------QUESTION------------------------------\n");
 	printf("  Use buttons W S to chose an answer and press D to finally select it!\n\n");
-	printf("%d.%s ?\n",currQuestion, question->text);
+	printf("%d.%s ?\n", currQuestion, question->text);
 	printf("  %sA) %s\n", markAnswerA, question->answerA);
 	printf("  %sB) %s\n", markAnswerB, question->answerB);
 	printf("  %sC) %s\n", markAnswerC, question->answerC);
@@ -51,7 +51,7 @@ void printMenu(int currChoice)
 	char firstChoice[] = "  ";
 	char secondChoice[] = "  ";
 	char thirdChoice[] = "  ";
-	
+
 	switch (currChoice)
 	{
 	case 1:
@@ -76,7 +76,6 @@ void printMenu(int currChoice)
 	printf("%sTake a Test\n\n", firstChoice);
 	printf("%sCorrect or Create a Test\n\n", secondChoice);
 	printf("%sExit", thirdChoice);
-	
 }
 
 int chooseAnswer(struct Question* q1, int currQuestion)
@@ -89,13 +88,13 @@ int chooseAnswer(struct Question* q1, int currQuestion)
 		currAns = _getch();
 		switch (currAns)
 		{
-		case 'w':  
+		case 'w':
 			input--;
 			if (input < 1) { input = 3; }
 			system("cls");
 			printQuestion(q1, input, currQuestion);
 			break;
-		case 's': 
+		case 's':
 			input++;
 			if (input > 3) { input = 1; }
 			system("cls");
@@ -128,11 +127,11 @@ void takeATest(struct Question test[4])
 	int grade = 0;
 	for (int i = 0; i < 10; i++)
 	{
-		grade += chooseAnswer(&test[i],i+1);
+		grade += chooseAnswer(&test[i], i + 1);
 	}
 	system("cls");
-	printf("\n  Your score is: %d\n",grade);
-	if (grade>10)
+	printf("\n  Your score is: %d\n", grade);
+	if (grade > 10)
 	{
 		printf("\n  Congratulations! You successfully passed the test!\n");
 	}
@@ -141,36 +140,36 @@ void takeATest(struct Question test[4])
 		printf("\n  You failed miserably! Try again!\n");
 	}
 	Sleep(3000);
-
 }
-void createOrCorrectTest(int testIndex,int* numberOfTests,struct Question* tests)
+void createOrCorrectTest(int testIndex, int* numberOfTests, struct Question* tests)
 {
 	system("cls");
 	printf("Write your questions and their answers and then press Enter!\n");
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		printf("\nEnter question N:%d\n %d.", i+1,i+1);
+		printf("\nEnter question N:%d\n %d.", i + 1, i + 1);
 		char question[40];
-		gets_s(question,40);
+		gets_s(question, 40);
 		strcpy((tests + testIndex - 1)[i].text, question);
-		
+
 		printf("Enter the first answer:\nA) ");
 		char answerA[20];
-		gets_s(answerA,20);
-		strcpy((tests + testIndex -1)[i].answerA, answerA);
-		
+		gets_s(answerA, 20);
+		strcpy((tests + testIndex - 1)[i].answerA, answerA);
+
 		printf("Enter the second answer:\nB) ");
 		char answerB[20];
 		gets_s(answerB, 20);
-		strcpy((tests + testIndex -1)[i].answerB, answerB);
+		strcpy((tests + testIndex - 1)[i].answerB, answerB);
 
 		printf("Enter the third answer:\nC) ");
 		char answerC[20];
 		gets_s(answerC, 20);
-		strcpy((tests + testIndex -1)[i].answerC, answerC);
+		strcpy((tests + testIndex - 1)[i].answerC, answerC);
 
 		printf("Enter the index of the right answer: 1 for A) and so on..\n");
-		_getch(&(tests + testIndex -1)[i].answerRight);
+		(tests + testIndex - 1)[i].answerRight =_getch();
+		printf("%d\n", (tests + testIndex - 1)[i].answerRight-48);
 	}
 	system("cls");
 	printf("\nThe was successfully Correcte/Created!");
@@ -182,7 +181,7 @@ void chooseInMenu(struct Question* tests, int* numberOfTests, int* exit)
 {
 	int input = 1;
 	int currAns;
-	
+
 	while (*exit)
 	{
 		printMenu(input);
@@ -204,28 +203,24 @@ void chooseInMenu(struct Question* tests, int* numberOfTests, int* exit)
 		case 'd':
 			if (input == 1)
 			{
-				//TODO: Choose a test and take it and then go back to menu
 				int testIndex;
 				system("cls");
-				printf("You can choose between %d tests\n",*numberOfTests);
+				printf("You can choose between %d tests\n", *numberOfTests);
 				printf("Enter the index of the test: 1 for the first..\n");
 				testIndex = _getch() - 48;
 				takeATest(tests + testIndex - 1);
 				system("cls");
 			}
-			else if(input == 2)
+			else if (input == 2)
 			{
 				int testIndex;
 				system("cls");
-				printf("Enter the index of the test: 1 for the first\n");
-				printf("There are %d finished tests. You can correct them or create a new one by entring the index of a non existing test: for example 2 \n", *numberOfTests);
-				testIndex = _getch()-48;
-				createOrCorrectTest(testIndex,numberOfTests, tests);
-				//TODO: Go back to menu in func Menu not here
+				printf("There are %d finished tests.\nEnter the index of the test you want to correct or create a new one.\nHint! By entring the index of a non existing test for example %d you will create a new test! \n", *numberOfTests, *numberOfTests+1);
+				testIndex = _getch() - 48;
+				createOrCorrectTest(testIndex, numberOfTests, tests);
 			}
 			else if (input == 3)
 			{
-				//TODO: Exit
 				*exit = 0;
 			}
 			break;
@@ -238,7 +233,7 @@ void menu(struct Question* tests, int* numberOfTests)
 	int exit = 1;
 	while (exit)
 	{
-		chooseInMenu(tests, numberOfTests,&exit);
+		chooseInMenu(tests, numberOfTests, &exit);
 	}
 }
 
@@ -246,7 +241,7 @@ int main()
 {
 	struct Question tests[3][10];
 	int numberOfTests = 1;
-	
+
 	strcpy(tests[0][0].text, "What is the color of water");
 	strcpy(tests[0][0].answerA, "Green");
 	strcpy(tests[0][0].answerB, "Blue");
@@ -307,7 +302,7 @@ int main()
 	strcpy(tests[0][9].answerC, "Petar");
 	tests[0][9].answerRight = 2;
 
-	menu(&tests,&numberOfTests);
+	menu(*tests, &numberOfTests);
 
 	return 0;
 }
