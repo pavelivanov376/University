@@ -6,4 +6,4 @@ A auto-grading system is also implemented.
 
 2. MorseCodeTranslator is a console app which helps you translete english sentence to morse code.
 
-3.Coming soon!
+3. Coming soon!
