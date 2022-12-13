@@ -1,9 +1,7 @@
-# MyCProjects
 University and free time projects:
 
-1. CreateAndTakeExams is a console app which allows you to create your own tests and then take them or the one that is selected by defalut.
-A auto-grading system is also implemented.
+1. CreateAndTakeExams - Console app which allows you to create your own tests and then take them and be graded by auto-grading system.
 
-2. MorseCodeTranslator is a console app which helps you translete english sentence to morse code.
+2. MorseCodeTranslator - Console app that translates english sentence to morse code.
 
 3. SimplePaint - Drawing app, using win32 api.
