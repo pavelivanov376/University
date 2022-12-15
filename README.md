@@ -6,4 +6,4 @@ University and free time projects:
 
 3. SimplePaint - Drawing app, using win32 api.
 
-4. 
+4. Rendering3dObjects - Rendering 3D graphics in C++ using glut.h
